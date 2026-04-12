@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الخدمة | أبو إسلام للأثاث</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1B365D; --secondary: #8B5A2B; --accent: #E5A93C; --background: #FDFDFB; --surface: #FFFFFF;
+            --text-main: #2D3748; --text-muted: #718096;
+            --font-ar: 'Tajawal', sans-serif; --font-en: 'Outfit', sans-serif;
+            --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.05);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-ar); background-color: var(--background); color: var(--text-main); line-height: 1.6; }
+        html[dir="ltr"] body { font-family: var(--font-en); }
+        
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        
+        /* Navbar Simple */
+        nav { padding: 20px 0; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #edf2f7; margin-bottom: 40px; }
+        .back-btn { background: transparent; border: none; font-family: inherit; font-size: 1.1rem; color: var(--primary); font-weight: bold; cursor: pointer; text-decoration: none;}
+        .back-btn:hover { color: var(--accent); }
+        
+        .img-container { display: flex; justify-content: center; width: 100%; margin-bottom: 30px; }
+        .service-img { 
+            max-width: 100%; 
+            height: auto; 
+            max-height: 500px; 
+            border-radius: 20px; 
+            border: 2px solid var(--accent); /* Golden Border tightly wrapped */
+            box-shadow: 0 15px 30px rgba(229, 169, 60, 0.15), var(--shadow-md); 
+        }
+        .service-title { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
+        .service-desc { font-size: 1.25rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 40px; }
+        
+        .btn-whatsapp { display: inline-flex; align-items: center; justify-content: center; padding: 15px 40px; font-size: 1.2rem; font-weight: 700; background-color: #25D366; color: white; text-decoration: none; border-radius: 50px; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4); gap: 10px; width: 100%; transition: 0.3s; }
+        .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6); }
+
+        .loader { text-align: center; font-size: 1.5rem; color: var(--primary); margin-top: 50px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="index.html" class="back-btn" id="backLink">← العودة للرئيسية</a>
+            <div style="font-weight: 800; font-size: 1.5rem; color: var(--primary);">أبو إسلام</div>
+        </nav>
+
+        <div id="content" style="display: none;">
+            <div class="img-container">
+                <img src="" alt="Service Image" id="srvImg" class="service-img">
+            </div>
+            <h1 class="service-title" id="srvTitle"></h1>
+            <p class="service-desc" id="srvDesc"></p>
+            <a href="" id="waBtn" target="_blank" class="btn-whatsapp">
+                <span id="btnText">احجز هذه الخدمة الآن</span>
+                📱
+            </a>
+        </div>
+        <div id="loader" class="loader">جاري التحميل...</div>
+    </div>
+
+    <script>
+        const translations = {
+            ar: {
+                back: "← العودة للرئيسية",
+                btnObj: "احجز هذه الخدمة الآن بضغطة زر",
+                loading: "جاري التحميل...",
+                waMsg: "السلام عليكم أستاذ أبو إسلام، أريد الاستفسار عن خدمة: ",
+                // Titles
+                srv1Title: "تركيب الأثاث المستورد والفاخر",
+                srv2Title: "تركيب أثاث واكسسوارات (IKEA)",
+                srv3Title: "فك وإعادة تركيب الأثاث المحلي",
+                srv4Title: "تركيب وتثبيت الستائر",
+                srv5Title: "تجميع الأجهزة الرياضية",
+                // Descs
+                srv1Full: "نفخر بخبرتنا العميقة في التعامل مع جميع أنواع الأثاث المستورد بالغ الحساسية والفخامة (الأوروبي والأمريكي). نضمن لك تجميع القطع المعقدة وتركيب غرف النوم الماستر تماماً كما صُممت في مصانعها الأم. نهتم بوزن الأبواب وضبط المفصلات بالمليمتر لتعمل بسلاسة مطلقة، ونحرص على عدم إحداث أي خدوش. راحتك وسلامة أثاثك الثمين هي أولويتنا القصوى التي لا نساوم عليها.",
+                srv2Full: "هل أصبح كتالوج ايكيا المعقد عائقاً أمامك؟ لا تقلق! بفضل مئات العمليات الناجحة، نمتلك القدرة والسرعة على فك طلاسم كتالوجات ايكيا وتجميع أدراجها ودواليب الـ PAX والأسرّة المدمجة بكل إتقان، لنضمن لك متانة فولاذية للمنتج تمنعه تماماً من الاهتزاز أو الارتخاء بمرور الزمن.",
+                srv3Full: "سواء كنت تريد نقل عفش وتغيير غرفتك بالكامل أو اشتريت غرفة صُنع محلي جديدة وتحتاج تركيبها، نحن نغطي لك كل التفاصيل. نوفر خدمة متكاملة تتضمن التفكيك الآمن للأثاث الخشبي الثقيل، ترقيمه، وإعادة تركيبه بخبرة وحرفية تحافظ على مساميره الداخلية وتحمي الخشب من التآكل أو التقوس.",
+                srv4Full: "لا تكتمل أناقة المنزل إلا بتركيب الستائر بشكل مستقيم ومحكم. نستخدم معدات حفر دقيقة تمنع تشويه الحوائط، وأدوات ميزان حساسة لتركيب الستائر القماشية والمعدنية وستائر الرول بدقة هندسية عالية جداً، متأكدين من قوة تحمل الحوامل للستائر الثقيلة لتعيش معك سنوات دون السقوط.",
+                srv5Full: "تجميع الأجهزة الرياضية مثل المشايات الكهربائية وأجهزة الأوزان المجمعة لا يحتمل الخطأ. فهو يتطلب تجميعاً هندسياً دقيقاً لضمان عدم حدوث أي اختلال في الأوزان أو تماس كهربائي. نقوم بعملية بناء الجهاز بشكل احترافي واختباره بالكامل لضمان أنه جاهز لتتواصل رياضتك بأمان تام."
+            },
+            en: {
+                back: "→ Back to Home",
+                btnObj: "Reserve this service instantly",
+                loading: "Loading details...",
+                waMsg: "Hello Abu Islam, I would like to inquire about: ",
+                // Titles
+                srv1Title: "Premium Imported Furniture",
+                srv2Title: "IKEA Furniture Assembly",
+                srv3Title: "Local Furniture Fitting",
+                srv4Title: "Curtain Installation",
+                srv5Title: "Sports Equipment Setup",
+                // Descs
+                srv1Full: "We take pride in our extensive experience assembling delicate and luxurious imported furniture (European and American). We guarantee that your master bedroom and complex pieces are assembled exactly as designed in their home factories. We adjust doors and hinges down to the millimeter for perfectly smooth operation, avoiding any scratches. Your expensive furniture is in safe hands.",
+                srv2Full: "Is the complex IKEA manual holding you back? Don't worry! With hundreds of successful cases under our belt, we have the speed and expertise to decode IKEA manuals quickly. We skillfully assemble PAX wardrobes, complex beds, and drawers, guaranteeing rock-solid stability that never wobbles or loosens over time.",
+                srv3Full: "Whether you're rearranging your entire room or bought a newly crafted local living room, we've got you covered. We provide a complete comprehensive service: safely dismantling heavy wooden furniture, indexing parts, and reassembling it professionally to protect the internal screws and prevent wood shaving and bowing.",
+                srv4Full: "A home's elegance is only complete with perfectly straight, firmly installed curtains. We use precise drilling tools to ensure no wall damage, aligning fabric and roller curtains with high geometric accuracy. We make sure the brackets can indefinitely bear the load of heavy curtains without slipping.",
+                srv5Full: "Sports equipment assembly requires zero mistakes. Heavy treadmills and multi-gyms require precise mechanical fitting to prevent weight imbalance or electrical issues. We professionally build the machine step by step, fully testing its functions to guarantee safe, long-lasting workout conditions."
+            }
+        };
+
+        const serviceImages = {
+            'srv1': 'images/imported.png',
+            'srv2': 'images/ikea.png',
+            'srv3': 'images/local.png',
+            'srv4': 'images/curtain.png',
+            'srv5': 'images/sports.png'
+        };
+
+        // Initialize Page
+        const urlParams = new URLSearchParams(window.location.search);
+        const srvId = urlParams.get('id');
+        let currentLang = localStorage.getItem('lang') || 'ar';
+        
+        if(currentLang === 'en') {
+            document.documentElement.setAttribute('lang', 'en');
+            document.documentElement.setAttribute('dir', 'ltr');
+        }
+
+        if(srvId && translations[currentLang][srvId + 'Title']) {
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+
+            document.getElementById('backLink').textContent = translations[currentLang].back;
+            document.getElementById('btnText').textContent = translations[currentLang].btnObj;
+            
+            document.getElementById('srvImg').src = serviceImages[srvId];
+            document.getElementById('srvImg').onerror = function() { this.src = 'https://placehold.co/1200x600/1B365D/FFFFFF?text=Service+Image' };
+            
+            const transTitle = translations[currentLang][srvId + 'Title'];
+            document.getElementById('srvTitle').textContent = transTitle;
+            document.getElementById('srvDesc').textContent = translations[currentLang][srvId + 'Full'];
+            
+            const waMsg = translations[currentLang].waMsg + transTitle;
+            document.getElementById('waBtn').href = `https://wa.me/966574426629?text=${encodeURIComponent(waMsg)}`;
+            document.title = transTitle + " | أبو إسلام";
+        } else {
+            document.getElementById('loader').textContent = 'الخدمة غير موجودة. الرجاء العودة للرئيسية.';
+        }
+    </script>
+</body>
+</html>
