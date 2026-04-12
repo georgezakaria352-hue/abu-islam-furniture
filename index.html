@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
     <title>أبو إسلام لتركيب الأثاث | Abu Islam Furniture Assembly</title>
     <meta name="description" content="خدمات أبو إسلام في الأحساء لفك وتركيب الأثاث المستورد، ايكيا، المحلي، الستائر والأجهزة الرياضية. Professional furniture assembly in Al-Ahsa.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,9 +39,36 @@
             line-height: 1.6;
             overflow-x: hidden;
             transition: all 0.3s ease;
+            animation: fadeInPage 0.4s ease-out forwards;
+        }
+        @keyframes fadeInPage {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .page-transitioning {
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
-        html[dir="ltr"] body { font-family: var(--font-en); }
+        html[dir="ltr"] body {
+            font-family: var(--font-ar);
+            background-color: var(--background);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: all 0.3s ease;
+            animation: fadeInPage 0.4s ease-out forwards;
+        }
+        @keyframes fadeInPage {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .page-transitioning {
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
 
         .container {
             max-width: 1200px;
@@ -74,7 +102,7 @@
         @media (max-width: 768px) { 
             .menu-toggle { display: block; }
             .nav-links { 
-                display: none; 
+                display: flex; 
                 flex-direction: column; 
                 position: absolute; 
                 top: 100%; left: 0; width: 100%; 
@@ -82,8 +110,17 @@
                 box-shadow: var(--shadow-md); 
                 padding: 20px; text-align: center; gap: 20px;
                 border-bottom: 2px solid var(--accent);
+                
+                visibility: hidden;
+                opacity: 0;
+                transform: translateY(-20px);
+                transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
             }
-            .nav-links.active { display: flex; }
+            .nav-links.active { 
+                visibility: visible;
+                opacity: 1;
+                transform: translateY(0);
+            }
             .lang-btn { margin-bottom: 5px; }
             .desktop-only { display: none; }
             .mobile-only { display: block; }
@@ -188,7 +225,24 @@
         .modal-close:hover { background: #f1f5f9; }
 
         .modal-img { width: 100%; height: 250px; object-fit: cover; }
-        .modal-body { padding: 30px; }
+        .modal-body {
+            font-family: var(--font-ar);
+            background-color: var(--background);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: all 0.3s ease;
+            animation: fadeInPage 0.4s ease-out forwards;
+        }
+        @keyframes fadeInPage {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .page-transitioning {
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
         .modal-title { font-size: 1.8rem; color: var(--primary); margin-bottom: 15px; }
         .modal-full-desc { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 25px; line-height: 1.8; }
 
@@ -268,7 +322,7 @@
             <div class="grid">
                 
                 <!-- Service 1 -->
-                <div class="card fade-up" onclick="window.location.href='service.html?id=srv1'">
+                <div class="card fade-up" onclick="navigateToService(\'service.html?id=srv1\')">
                     <span class="click-hint" data-key="clickHint">اضغط للتفاصيل</span>
                     <img src="images/imported.png" alt="Imported Furniture" class="card-img" onerror="this.src='https://placehold.co/600x400/1B365D/FFFFFF?text=Imported+Furniture'">
                     <div class="card-content">
@@ -279,7 +333,7 @@
                 </div>
 
                 <!-- Service 2 -->
-                <div class="card fade-up" style="transition-delay: 0.1s" onclick="window.location.href='service.html?id=srv2'">
+                <div class="card fade-up" style="transition-delay: 0.1s" onclick="navigateToService(\'service.html?id=srv2\')">
                     <span class="click-hint" data-key="clickHint">اضغط للتفاصيل</span>
                     <img src="images/ikea.png" alt="IKEA Furniture" class="card-img" onerror="this.src='https://placehold.co/600x400/8B5A2B/FFFFFF?text=IKEA+Furniture'">
                     <div class="card-content">
@@ -290,7 +344,7 @@
                 </div>
 
                 <!-- Service 3 -->
-                <div class="card fade-up" style="transition-delay: 0.2s" onclick="window.location.href='service.html?id=srv3'">
+                <div class="card fade-up" style="transition-delay: 0.2s" onclick="navigateToService(\'service.html?id=srv3\')">
                     <span class="click-hint" data-key="clickHint">اضغط للتفاصيل</span>
                     <img src="images/local.png" alt="Local Furniture" class="card-img" onerror="this.src='https://placehold.co/600x400/E5A93C/FFFFFF?text=Local+Furniture'">
                     <div class="card-content">
@@ -301,7 +355,7 @@
                 </div>
 
                 <!-- Service 4 -->
-                <div class="card fade-up" style="transition-delay: 0.3s" onclick="window.location.href='service.html?id=srv4'">
+                <div class="card fade-up" style="transition-delay: 0.3s" onclick="navigateToService(\'service.html?id=srv4\')">
                     <span class="click-hint" data-key="clickHint">اضغط للتفاصيل</span>
                     <img src="images/curtain.png" alt="Curtains Installation" class="card-img" onerror="this.src='https://placehold.co/600x400/2D3748/FFFFFF?text=Curtains+Installation'">
                     <div class="card-content">
@@ -312,7 +366,7 @@
                 </div>
 
                 <!-- Service 5 -->
-                <div class="card fade-up" style="transition-delay: 0.4s" onclick="window.location.href='service.html?id=srv5'">
+                <div class="card fade-up" style="transition-delay: 0.4s" onclick="navigateToService(\'service.html?id=srv5\')">
                     <span class="click-hint" data-key="clickHint">اضغط للتفاصيل</span>
                     <img src="images/sports.png" alt="Sports Equipment" class="card-img" onerror="this.src='https://placehold.co/600x400/718096/FFFFFF?text=Sports+Equipment'">
                     <div class="card-content">
@@ -350,7 +404,7 @@
         <div class="container">
             <h2 data-key="logoFooter" style="margin-bottom: 20px;">أبو إسلام لخدمات الأثاث</h2>
             <p data-key="footerLoc">العنوان: الأحساء، المنطقة الشرقية، المملكة العربية السعودية</p>
-            <p><span data-key="footerPhone">الجوال:</span> <strong style="direction: ltr; display: inline-block;">+966 574426629</strong></p>
+            <p style="margin-top: 10px;"><span data-key="footerPhone">التواصل المباشر:</span> <a href="tel:+966574426629" style="color: white; text-decoration: none; font-weight: bold; direction: ltr; display: inline-block;">+966 574426629</a></p>
             <br>
             <p data-key="rights">© جميع الحقوق محفوظة لأبو إسلام للتركيبات 2026</p>
         </div>
@@ -529,6 +583,14 @@
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
         fadeElements.forEach(el => fadeObserver.observe(el));
+
+        // --- Page Navigation Animation ---
+        function navigateToService(url) {
+            document.body.classList.add('page-transitioning');
+            setTimeout(() => {
+                window.location.href = url;
+            }, 300);
+        }
 
         // --- Mobile Menu Logic ---
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');

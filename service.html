@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
     <title>تفاصيل الخدمة | أبو إسلام للأثاث</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,8 +16,42 @@
             --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.05);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: var(--font-ar); background-color: var(--background); color: var(--text-main); line-height: 1.6; }
-        html[dir="ltr"] body { font-family: var(--font-en); }
+        body {
+            font-family: var(--font-ar);
+            background-color: var(--background);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: all 0.3s ease;
+            animation: fadeInPage 0.4s ease-out forwards;
+        }
+        @keyframes fadeInPage {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .page-transitioning {
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        html[dir="ltr"] body {
+            font-family: var(--font-ar);
+            background-color: var(--background);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: all 0.3s ease;
+            animation: fadeInPage 0.4s ease-out forwards;
+        }
+        @keyframes fadeInPage {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .page-transitioning {
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
         
         .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
         
@@ -46,7 +81,7 @@
 <body>
     <div class="container">
         <nav>
-            <a href="index.html" class="back-btn" id="backLink">← العودة للرئيسية</a>
+            <a href="javascript:void(0)" onclick="navigateToService(\'index.html\')" class="back-btn" id="backLink">← العودة للرئيسية</a>
             <div style="font-weight: 800; font-size: 1.5rem; color: var(--primary);">أبو إسلام</div>
         </nav>
 
@@ -141,6 +176,10 @@
             document.title = transTitle + " | أبو إسلام";
         } else {
             document.getElementById('loader').textContent = 'الخدمة غير موجودة. الرجاء العودة للرئيسية.';
+        }
+        function navigateToService(url) {
+            document.body.classList.add('page-transitioning');
+            setTimeout(() => { window.location.href = url; }, 300);
         }
     </script>
 </body>
