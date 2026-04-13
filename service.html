@@ -37,7 +37,7 @@
             line-height: 1.6;
             overflow-x: hidden;
             transition: all 0.3s ease;
-            animation: fadeInPage 0.4s ease-out forwards;
+            animation: fadeInPage 0.2s ease-out forwards;
         }
         @keyframes fadeInPage {
             0% { opacity: 0; }
@@ -45,7 +45,7 @@
         }
         .page-transitioning {
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.2s ease;
         }
         html[dir="ltr"] body {
             font-family: var(--font-ar);
@@ -54,7 +54,7 @@
             line-height: 1.6;
             overflow-x: hidden;
             transition: all 0.3s ease;
-            animation: fadeInPage 0.4s ease-out forwards;
+            animation: fadeInPage 0.2s ease-out forwards;
         }
         @keyframes fadeInPage {
             0% { opacity: 0; }
@@ -62,7 +62,7 @@
         }
         .page-transitioning {
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.2s ease;
         }
         
         .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
@@ -221,7 +221,7 @@
         }
         function navigateToService(url) {
             document.body.classList.add('page-transitioning');
-            setTimeout(() => { window.location.href = url; }, 300);
+            setTimeout(() => { window.location.href = url; }, 200);
         }
     </script>
 </body>
